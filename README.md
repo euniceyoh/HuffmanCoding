@@ -6,7 +6,7 @@
 * Map 
 
 ### Time Complexity: 
-O(n*log(n)) 
+* O(n*log(n)) 
 
 ### Huffman Coding Attributes:   
 1. Compresses Data: reduces number of bits needed to represent data 
