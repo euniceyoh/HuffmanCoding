@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9E7EB5F824DD087200E6374D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EB5F724DD087200E6374D /* main.cpp */; };
+		9E7EB60024DD08AE00E6374D /* InternalNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EB5FE24DD08AE00E6374D /* InternalNode.cpp */; };
+		9E9CB42424DFA5F000097355 /* HuffmanFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CB42224DFA5F000097355 /* HuffmanFunctions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		9E7EB5F424DD087200E6374D /* HuffmanCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HuffmanCoding; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7EB5F724DD087200E6374D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9E7EB5FE24DD08AE00E6374D /* InternalNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InternalNode.cpp; sourceTree = "<group>"; };
+		9E7EB5FF24DD08AE00E6374D /* InternalNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InternalNode.hpp; sourceTree = "<group>"; };
+		9E9CB42224DFA5F000097355 /* HuffmanFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HuffmanFunctions.cpp; sourceTree = "<group>"; };
+		9E9CB42324DFA5F000097355 /* HuffmanFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HuffmanFunctions.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				9E7EB5F724DD087200E6374D /* main.cpp */,
+				9E9CB42224DFA5F000097355 /* HuffmanFunctions.cpp */,
+				9E9CB42324DFA5F000097355 /* HuffmanFunctions.hpp */,
+				9E7EB5FE24DD08AE00E6374D /* InternalNode.cpp */,
+				9E7EB5FF24DD08AE00E6374D /* InternalNode.hpp */,
 			);
 			path = HuffmanCoding;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7EB60024DD08AE00E6374D /* InternalNode.cpp in Sources */,
+				9E9CB42424DFA5F000097355 /* HuffmanFunctions.cpp in Sources */,
 				9E7EB5F824DD087200E6374D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
