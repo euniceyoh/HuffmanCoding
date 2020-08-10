@@ -18,7 +18,7 @@
 1. Useful when **data is repeated**: fewer bits are used to encode more frequent letters than to encode those less frequent 
 1. Has **prefix property**: no bit-sequence of a character is the prefix of any other bit sequence encoding
 
-###  Encoding/Compression/Huffing Program
+###  Encoding/Compression/Huffing Program:
 1. Create single-node trees for each symbol & add it to the priority queue.
 1. While there is more than 1 tree in the queue:
     1. Remove the two trees from queue with lowest frequency.
@@ -26,7 +26,7 @@
     1. Add the new node into queue.
 1. A single node in the priority queue is the root node and signifies the tree is complete. The root node should equal the total number of characters in the message.
 
-### Creating Codes Using Huffman Tree
+### Creating Codes Using Huffman Tree:
 1. Used a map to store bit sequence encodings from Huffman coding tree by following every root-to-leaf path.
 2. Read string and processed one character at a time. (Ex: “lossless compression”)
 3. A left edge is labeled by a ‘0’ and a right edge is labeled by a ‘1’. A node was compared to its parent’s left child or right child pointer to determine if a bit sequence should append a ‘0’ or ‘1’.
