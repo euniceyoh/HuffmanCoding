@@ -18,6 +18,9 @@
 1. Useful when **data is repeated**: fewer bits are used to encode more frequent letters than to encode those less frequent 
 1. Has **prefix property**: no bit-sequence of a character is the prefix of any other bit sequence encoding
 
+### Sample Input: 
+<img src = "huffmanCodingSampleInput.png">
+
 ### Resources: 
 * https://www2.cs.duke.edu/csed/poop/huff/info/
 * https://demo.tinyray.com/huffman
