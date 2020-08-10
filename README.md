@@ -21,9 +21,9 @@
 ###  Encoding/Compression/Huffing Program
 1. Create single-node trees for each symbol & add it to the priority queue.
 1. While there is more than 1 tree in the queue:
-  1. Remove the two trees from queue with lowest frequency.
-  1. Create a new internal node to be the parent of the new tree. Its weight is equal to sum of children. The children’s parent pointer points to the newly created node. 
-  1. Add the new node into queue.
+    1. Remove the two trees from queue with lowest frequency.
+    1. Create a new internal node to be the parent of the new tree. Its weight is equal to sum of children. The children’s parent pointer points to the newly created node. 
+    1. Add the new node into queue.
 1. A single node in the priority queue is the root node and signifies the tree is complete. The root node should equal the total number of characters in the message.
 
 ### Creating Codes Using Huffman Tree
