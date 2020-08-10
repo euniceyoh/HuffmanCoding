@@ -17,3 +17,13 @@
    * results in globally optimal encoding tree, yields a minimal per-character encoding/compression
 1. Useful when **data is repeated**: fewer bits are used to encode more frequent letters than to encode those less frequent 
 1. Has **prefix property**: no bit-sequence of a character is the prefix of any other bit sequence encoding
+
+### Resources: 
+* https://www2.cs.duke.edu/csed/poop/huff/info/
+* https://demo.tinyray.com/huffman
+* http://rosettacode.org/wiki/Huffman_coding#C.2B.2B
+* https://en.wikipedia.org/wiki/Binary_tree
+* https://en.wikipedia.org/wiki/Priority_queue
+* https://en.wikipedia.org/wiki/Huffman_coding
+* https://en.wikipedia.org/wiki/Heap_(data_structure)#Implementation
+* http://pages.cs.wisc.edu/~vernon/cs367/notes/11.PRIORITY-Q.html
