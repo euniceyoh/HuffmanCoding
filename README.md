@@ -12,7 +12,7 @@
 1. Compresses Data: reduces number of bits needed to represent data 
 1. A form of **lossless compression**, meaning no details are lost while compressing
 1. Has **variable-length encoding**, whereas in fixed-length encoding, each character has the same length (number of bits) or the same amount of space is used to store each character
-   * Ex: ASCII Codes uses 8 bits (1 byte) for each character 
+   * Fixed-Length Ex: ASCII Codes uses 8 bits (1 byte) for each character 
 1. A **greedy algorithm**: combines the **smallest nodes first**, which assigns most rarely used character a longer bit pattern 
    * results in globally optimal encoding tree, yields a minimal per-character encoding/compression
 1. Useful when **data is repeated**: fewer bits are used to encode more frequent letters than to encode those less frequent 
