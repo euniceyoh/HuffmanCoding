@@ -24,5 +24,6 @@ void display_encodings(map<char,string> encodings);
 void display_statistics(map<char,int> frequency, map<char,string> encodings);
 string complete_encoding(map<char,string> encodings, string input);
 string complete_decoding(InternalNode * root, string code);
+void destroy_tree(InternalNode * root);
 
 #endif /* HuffmanFunctions_hpp */

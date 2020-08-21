@@ -11,17 +11,6 @@
 #include <iostream>
 using namespace std;
 
-void destroy_tree(InternalNode * root)
-{
-    if(root == NULL)
-    {
-        return;
-    }
-    destroy_tree(root->_leftChild);
-    destroy_tree(root->_rightChild);
-    delete root;
-}
-
 int main() {
     
     cout << "Enter Text: ";
@@ -38,16 +27,15 @@ int main() {
     string bitSequence;
     map<char,string> _encodings;
     compressing(root, _encodings, bitSequence);
-    //display_encodings(_encodings);
     display_statistics(charFreq, _encodings);
     
-    cout << "Encoded Text: " << endl;
+    cout << endl << "Encoded Text: " << endl;
     string encodedText = complete_encoding(_encodings, test);
-    cout << encodedText << endl;
+    cout << encodedText << endl << endl;
     
     cout << "Decoded Text Using Encoded Text: " << endl;
     string decodedText = complete_decoding(root, encodedText);
-    cout << decodedText << endl;
+    cout << decodedText << endl << endl;
     
     destroy_tree(root);
     

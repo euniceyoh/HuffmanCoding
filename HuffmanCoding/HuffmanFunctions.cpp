@@ -42,7 +42,7 @@ void display_frequency(map<char,int> freqMap)
     }
 }
 
-InternalNode * create_huffman_tree(string test) // change into file
+InternalNode * create_huffman_tree(string test) // improve by reading from a file instead of using a string
 {
     // data structures:
         priority_queue<InternalNode *, vector<InternalNode *>, node_cmp> nodeQueue;
@@ -123,9 +123,8 @@ InternalNode * create_huffman_tree(string test) // change into file
     return nodeQueue.top();
 }
 
-// only print leaf nodes
-// kinda useless now
-void display_tree(InternalNode * root) // should root be part of class definition?
+// only prints leaf nodes
+void display_tree(InternalNode * root)
 {
     if(root == NULL)
     {
@@ -163,7 +162,8 @@ void compressing(InternalNode * root, map<char,string> &encoding, string code)
         return;
     }
     
-    //cout << "Weight: " << root->_weight << endl;
+    //  debugging:
+    //  cout << "Weight: " << root->_weight << endl;
     
     if(root->_parent != NULL) // if node is not the root
     {
@@ -171,18 +171,21 @@ void compressing(InternalNode * root, map<char,string> &encoding, string code)
         if(root == p->_leftChild) // if node is a left child, append 0
         {
             code += '0';
-            //cout << "Left" << endl;
+            //  debugging:
+            //  cout << "Left" << endl;
         } else if(root == p->_rightChild) // or if node is right child, append 1
         {
             code += '1';
-            //cout << "Right" << endl;
+            //  debugging:
+            //  cout << "Right" << endl;
         }
     }
     
     if(root->isLeafNode()) // reached a leaf node
     {
-        //cout << "Reached A Leaf Node: " << root->_letter << endl;
-        //cout << code << endl;
+        //  debugging:
+        //  cout << "Reached A Leaf Node: " << root->_letter << endl;
+        //  cout << code << endl;
         encoding[root->_letter] = code;
         code = "";
     }
@@ -191,7 +194,7 @@ void compressing(InternalNode * root, map<char,string> &encoding, string code)
 }
 
 
-// print character codes
+// prints character codes
 void display_encodings(map<char,string> encodings)
 {
     for(map<char,string>::iterator itr = encodings.begin(), end = encodings.end(); itr != end; ++itr)
@@ -213,8 +216,7 @@ void display_statistics(map<char,int> frequency, map<char,string> encodings)
         int cost = (int) code.length() * weight; // costs: code length * character weight
         totalCost += cost;
         
-        cout << "Char: " << c << "\t" << " Weight: " << weight << "\t" <<
-        " Code: " << code << "\t" << " Cost: " << cost << endl;
+        cout << "Char: " << c << "\t" << " Weight: " << weight << "\t" << " Code: " << code << "\t" << " Cost: " << cost << endl;
     }
     
     cout << "Total Cost: " << totalCost << endl;
@@ -258,3 +260,13 @@ string complete_decoding(InternalNode * root, string code)
     return decoding;
 }
 
+void destroy_tree(InternalNode * root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    destroy_tree(root->_leftChild);
+    destroy_tree(root->_rightChild);
+    delete root;
+}

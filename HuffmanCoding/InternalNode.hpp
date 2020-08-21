@@ -18,12 +18,13 @@ class InternalNode{
 public:
     InternalNode(char c, int weight);   // Leaf Node Constructor
     InternalNode();                     // Regular Constructor
-    //~InternalNode();
+    //~InternalNode();                  // Destructor
     char getLetter();
     int getWeight();
     bool isLeafNode();
     
-public:    // private here?
+    
+public:
     char _letter;
     int _weight;
     InternalNode * _leftChild;

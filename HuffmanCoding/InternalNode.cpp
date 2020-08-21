@@ -38,6 +38,7 @@ int InternalNode::getWeight(){
     return _weight;
 }
 
+
 bool InternalNode::isLeafNode(){
     if(_leftChild == NULL && _rightChild == NULL)
     {
