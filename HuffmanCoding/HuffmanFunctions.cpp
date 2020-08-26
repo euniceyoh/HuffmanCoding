@@ -1,10 +1,9 @@
-//
-//  HuffmanFunctions.cpp
-//  HuffmanCoding
-//
-//  Created by Eunice Oh on 8/8/20.
-//  Copyright © 2020 Eunice Oh. All rights reserved.
-//
+
+/*
+File: HuffmanFunctions.cpp
+
+This is the implementation for creating a Huffman coding tree, and compressing and decompressing text.
+*/
 
 #include "HuffmanFunctions.hpp"
 #include "InternalNode.hpp"
@@ -17,12 +16,17 @@
 
 using namespace std;
 
+/*
+ Function:
+ Usage:
+ 
+ Stores character and its associated frequencies (weight) in a map.
+ */
+
 void create_frequency_table(map<char,int> &charFreq, string text)
 {
-    // inserting unique chars & their weight in map
-    for(int i = 0; i < text.length(); i++)
+    for(char c: text)
     {
-        char c = text[i];
         map<char,int>::iterator itr = charFreq.find(c);
         if(itr != charFreq.end())
         {
@@ -33,62 +37,57 @@ void create_frequency_table(map<char,int> &charFreq, string text)
     }
 }
 
-// iterate through map that contain codes
+/*
+ Function:
+ Usage:
+ 
+ Display the map of characters and its associated freqeuncies. Used to debug.
+ */
+
 void display_frequency(map<char,int> freqMap)
 {
     for(map<char,int>::iterator itr = freqMap.begin(), end = freqMap.end(); itr != end; ++itr)
     {
-        cout << "Char: " << itr->first << " Frequency: " << itr->second << endl;
+        cout << itr->first << "-->" << itr->second << endl;
     }
 }
 
-InternalNode * create_huffman_tree(string test) // improve by reading from a file instead of using a string
+/*
+ Debugging
+ need to add to header file too
+ */
+
+//void displayPriorityQueue(priority_queue<InternalNode *, vector<InternalNode> *, node_cmp> nodeQueue)
+//{
+//    cout << "Order of Nodes: " << endl;
+//
+//    while(!nodeQueue.empty())
+//    {
+//        InternalNode * aNode = nodeQueue.top();
+//        cout << aNode->getLetter() << " -> " << aNode-> getWeight() << endl;
+//        nodeQueue.pop();
+//    }
+//}
+
+/*
+ Function:
+ Usage:
+ 
+ 8/26 Update: included parameter for map
+ 
+ Returns root node ...
+ */
+
+InternalNode * create_huffman_tree(map<char,int> charFreq, string test)
 {
-    // data structures:
-        priority_queue<InternalNode *, vector<InternalNode *>, node_cmp> nodeQueue;
-        map<char,int> charFreq;
-        
-        // inserting unique chars & their weight in map
-        for(int i = 0; i < test.length(); i++)
-        {
-            char c = test[i];
-            map<char,int>::iterator itr = charFreq.find(c);
-            if(itr != charFreq.end())
-            {
-                charFreq[c] += 1;
-            } else {
-                charFreq[c] = 1;
-            }
-        }
-        
-    #ifdef DEBUGGING
-        // print contents of map
-        for(map<char,int>::iterator itr = charFreq.begin(), end = charFreq.end(); itr!=end; ++itr)
-        {
-            cout << itr->first << "-->" << itr->second << endl;
-        }
-        
-    #endif
+    priority_queue<InternalNode *, vector<InternalNode *>, node_cmp> nodeQueue;
     
     // pushing each leafNode into queue
     for(map<char,int>::iterator itr = charFreq.begin(), end = charFreq.end(); itr!=end; ++itr)
     {
-        InternalNode * leafNode = new InternalNode(itr->first, itr->second);
-        // another way to construct object:
-        // InternalNode node(itr->first, itr->second);
+        InternalNode * leafNode = new InternalNode(itr->first, itr->second); // itr->first = char; itr->second = weight;
         nodeQueue.push(leafNode);
     }
-      
-    #ifdef DEBUGGING // if NOT defined
-        cout << "Order of Nodes: " << endl;
-        
-        while(!nodeQueue.empty())
-        {
-            cout << nodeQueue.top()->_letter << endl;
-            nodeQueue.pop();
-        }
-        
-    #endif
     
     // next step: loop through the priority queue
     // pop the first two nodes
@@ -100,18 +99,14 @@ InternalNode * create_huffman_tree(string test) // improve by reading from a fil
         InternalNode * childB = nodeQueue.top();
         nodeQueue.pop();
         
-        #ifdef DEBUGGING
-        cout << "Child Weights: " << childA->_weight << " " << childB->_weight << endl;
-        #endif
-        
         InternalNode * parentNode = new InternalNode();
         parentNode->_leftChild = childA;
-        childA->_parent = parentNode;
-        
         parentNode->_rightChild = childB;
+        
+        childA->_parent = parentNode;
         childB->_parent = parentNode;
         
-        parentNode->_weight = childA->_weight + childB->_weight; // can use -> to call a function
+        parentNode->setWeight(childA->_weight + childB->_weight);
         
         #ifdef DEBUGGING
         cout << "Parent Weight: " << parentNode->_weight << endl;
@@ -123,7 +118,13 @@ InternalNode * create_huffman_tree(string test) // improve by reading from a fil
     return nodeQueue.top();
 }
 
-// only prints leaf nodes
+/*
+ Function:
+ Usage:
+ 
+ Prints leaf nodes
+ */
+
 void display_tree(InternalNode * root)
 {
     if(root == NULL)
@@ -153,8 +154,17 @@ void display_tree(InternalNode * root)
     display_tree(root->_rightChild);
 }
 
-// follows every root-to-leaf path, indicating a 0 for a left edge or a 1 for a right edge
-// maps contains every uniqiue character and associated code
+/*
+ Function:
+ Usage:
+ 
+ root, map, string
+ 
+ follows every root-to-leaf path, indicating a 0 for a left edge or a 1 for a right edge
+ maps contains every unique character and associated code
+ 
+ */
+
 void compressing(InternalNode * root, map<char,string> &encoding, string code)
 {
     if(root == NULL)
@@ -162,33 +172,24 @@ void compressing(InternalNode * root, map<char,string> &encoding, string code)
         return;
     }
     
-    //  debugging:
-    //  cout << "Weight: " << root->_weight << endl;
-    
     if(root->_parent != NULL) // if node is not the root
     {
         InternalNode * p = root->_parent;
         if(root == p->_leftChild) // if node is a left child, append 0
         {
             code += '0';
-            //  debugging:
-            //  cout << "Left" << endl;
         } else if(root == p->_rightChild) // or if node is right child, append 1
         {
             code += '1';
-            //  debugging:
-            //  cout << "Right" << endl;
         }
     }
     
     if(root->isLeafNode()) // reached a leaf node
     {
-        //  debugging:
-        //  cout << "Reached A Leaf Node: " << root->_letter << endl;
-        //  cout << code << endl;
-        encoding[root->_letter] = code;
+        encoding[root->getLetter()] = code;
         code = "";
     }
+    
     compressing(root->_leftChild, encoding, code);
     compressing(root->_rightChild, encoding, code);
 }

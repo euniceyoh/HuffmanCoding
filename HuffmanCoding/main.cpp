@@ -21,23 +21,25 @@ int main() {
     
     map<char,int> charFreq;
     create_frequency_table(charFreq, test);
+    display_frequency(charFreq);
     
-    InternalNode * root = create_huffman_tree(test);
+    InternalNode * root = create_huffman_tree(charFreq, test);
     
-    string bitSequence;
-    map<char,string> _encodings;
-    compressing(root, _encodings, bitSequence);
-    display_statistics(charFreq, _encodings);
-    
-    cout << endl << "Encoded Text: " << endl;
-    string encodedText = complete_encoding(_encodings, test);
-    cout << encodedText << endl << endl;
-    
-    cout << "Decoded Text Using Encoded Text: " << endl;
-    string decodedText = complete_decoding(root, encodedText);
-    cout << decodedText << endl << endl;
-    
-    destroy_tree(root);
+//
+//    string bitSequence;
+//    map<char,string> _encodings;
+//    compressing(root, _encodings, bitSequence);
+//    display_statistics(charFreq, _encodings);
+//
+//    cout << endl << "Encoded Text: " << endl;
+//    string encodedText = complete_encoding(_encodings, test);
+//    cout << encodedText << endl << endl;
+//
+//    cout << "Decoded Text Using Encoded Text: " << endl;
+//    string decodedText = complete_decoding(root, encodedText);
+//    cout << decodedText << endl << endl;
+//
+//    destroy_tree(root);
     
     return 0;
 }

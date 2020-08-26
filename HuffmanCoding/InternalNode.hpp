@@ -1,10 +1,9 @@
-//
-//  InternalNode.hpp
-//  HuffmanCoding
-//
-//  Created by Eunice Oh on 8/6/20.
-//  Copyright © 2020 Eunice Oh. All rights reserved.
-//
+
+/*
+ File: InternalNode.hpp
+ 
+ This is the interface for a Huffman tree node.
+ */
 
 #ifndef InternalNode_hpp
 #define InternalNode_hpp
@@ -21,6 +20,7 @@ public:
     //~InternalNode();                  // Destructor
     char getLetter();
     int getWeight();
+    void setWeight(int w);
     bool isLeafNode();
     
     

@@ -1,10 +1,9 @@
-//
-//  InternalNode.cpp
-//  HuffmanCoding
-//
-//  Created by Eunice Oh on 8/6/20.
-//  Copyright © 2020 Eunice Oh. All rights reserved.
-//
+
+/*
+ File: InternalNode.cpp
+ 
+ This is the implementation for a Huffman tree node.
+ */
 
 #include "InternalNode.hpp"
 #include <iostream>
@@ -13,7 +12,14 @@
 
 using namespace std;
 
-InternalNode::InternalNode(char c, int weight) // leaf node constructor
+/*
+ Function:
+ Usage:
+ 
+ Constructs a leaf node
+ */
+
+InternalNode::InternalNode(char c, int weight)
 {
     _letter = c;
     _weight = weight;
@@ -23,11 +29,25 @@ InternalNode::InternalNode(char c, int weight) // leaf node constructor
     
 }
 
-InternalNode::InternalNode() // regular node constructor
+/*
+ Function:
+ Usage:
+ 
+ Constructs an internal node
+ */
+
+InternalNode::InternalNode()
 {
     _letter = NULL; // letter should be empty
     _parent = NULL;
 }
+
+/*
+ Functions:
+ Usage:
+ 
+ Returns value of respective data members
+ */
 
 char InternalNode::getLetter()
 {
@@ -38,6 +58,22 @@ int InternalNode::getWeight(){
     return _weight;
 }
 
+/*
+ Functions:
+ Usage:
+ 
+ */
+
+void InternalNode::setWeight(int w){
+    _weight = w;
+}
+
+/*
+ Function:
+ Usage:
+ 
+ Returns true if a node is a leaf node
+ */
 
 bool InternalNode::isLeafNode(){
     if(_leftChild == NULL && _rightChild == NULL)
@@ -46,6 +82,12 @@ bool InternalNode::isLeafNode(){
     }
     return false;
 }
+
+/*
+ Function:
+ Usage:
+ 
+ */
 
 bool node_cmp::operator()(const InternalNode * nodeA,
                           const InternalNode * nodeB) const
